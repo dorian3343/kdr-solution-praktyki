@@ -1,4 +1,3 @@
-
   const Map1 = new Map([ 
   ["<p>", "<p>"],
   ["<h1>", "h1!{"],
@@ -11,21 +10,6 @@
   ["<div style=","<div style="],
   ["<span style=","<span style="],
   ["<span>","<span>"],
-  ["pt;","pt;"],
-  ["px;","px;"],
-  ["font-size:","font-size:"],
-  [";",";"],
-  ["font-family:","font-family:"],
-  ["justify;","justify;"],
-  ["color:","color:"],
-  ["rgb(","rgb("],
-  [");",");"],
-  ["padding-","padding-"],
-  ["center;","center;"],
-  ["left;","left;"],
-  ["right;","right;"],
-  ["background-","background-"],
-  ["line-height","line-height"],
   ["<p style=","<p style="],
   ["<h1 style=","<h1 style="],
   ["<h2 style=","<h2 style="],
@@ -35,13 +19,8 @@
   ["<h6 style=","<h6 style="],
   ["<pre style=","<pre style="],
   ["</pre>","</pre>"],
-  ["@","@ma"],
-  ["{","@ot"],
-  ["}","@za"],
   ["<em>","<em>"],
   ["<strong>","<strong>"],
- ["text-decoration:","text-decoration:"],
-  ["underline;","underline;"],
   ["<s>","<s>"],
   ["<sup>","<sup>"],
   ["<sub>","<sub>"],
@@ -66,6 +45,28 @@ const Map2 = new Map([
   ["</sup>","</sup>"],
   ["</s>","</s>"],
 ])
+const Map3 = new Map([
+  ["text-decoration:","text-decoration:"],
+  ["underline;","underline;"],
+  ["@","@ma"],
+  ["{","@ot"],
+  ["}","@za"],
+  ["pt;","pt;"],
+  ["px;","px;"],
+  ["font-size:","font-size:"],
+  [";",";"],
+  ["font-family:","font-family:"],
+  ["justify;","justify;"],
+  ["color:","color:"],
+  ["rgb(","rgb("],
+  [");",");"],
+  ["padding-","padding-"],
+  ["center;","center;"],
+  ["left;","left;"],
+  ["right;","right;"],
+  ["background-","background-"],
+  ["line-height","line-height"],
+])
 
 function stringContainsKey(string, keyMap) {
 
@@ -76,7 +77,7 @@ function stringContainsKey(string, keyMap) {
 for (let i = 0; i < valuesArray.length; i++) {
   if (string.includes(valuesArray[i])) {
     counter++;
-
+    console.log(valuesArray[i])
   }
 }
 
@@ -86,10 +87,24 @@ let counter2 = 0;
 
 for (let i = 0; i < valuesArray2.length; i++) {
 if (string.includes(valuesArray2[i])) {
+  console.log(valuesArray2[i])
   counter2++;
 }
 }
 
+const valuesArray3 = [...Map3.keys()];
+console.log(valuesArray3); 
+let counter3 = 0;
+
+for (let i = 0; i < valuesArray3.length; i++) {
+if (string.includes(valuesArray3[i])) {
+  console.log(valuesArray3[i])
+  counter3++;
+}
+}
+
+
 console.log("Open:" + counter);
 console.log("CLose:" + counter2);
+console.log("Exotic:" + counter3);
 }
