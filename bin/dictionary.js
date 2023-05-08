@@ -1,6 +1,6 @@
 
   const Map1 = new Map([ 
-  ["<p>", "p!{"],
+  ["<p>", "<p>"],
   ["<h1>", "h1!{"],
   ["<h2>", "value3"],
   ["<h3>", "value3"],
@@ -10,7 +10,6 @@
   ["div", "<div>"],
   ["</div>","</div>"],
   ["<div style=","<div style="],
-  [">",">"],
   ["<span style=","<span style="],
   ["</span>","</span>"],
   ["<span>","<span>"],
@@ -55,10 +54,17 @@
 ]);
 
 function stringContainsKey(string, keyMap) {
-  console.log(Object.keys)
-  let i = 0
-  while (i < Object.keys(Map1).length){
-    i++
-    console.log(string)
+
+  const valuesArray = [...Map1.keys()];
+  console.log(valuesArray); 
+  let counter = 0;
+
+for (let i = 0; i < valuesArray.length; i++) {
+  if (string.includes(valuesArray[i])) {
+    counter++;
+    console.log(`Found ${valuesArray[i]} in ${string}`);
   }
+}
+
+console.log(counter);
 }
