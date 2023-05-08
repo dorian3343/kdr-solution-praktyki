@@ -69,7 +69,7 @@ const Map3 = new Map([
 ])
 
 function stringContainsKey(string, keyMap) {
-
+  let container = []
   const valuesArray = [...Map1.keys()];
   console.log(valuesArray); 
   let counter = 0;
@@ -78,6 +78,7 @@ for (let i = 0; i < valuesArray.length; i++) {
   if (string.includes(valuesArray[i])) {
     counter++;
     console.log(valuesArray[i])
+    container.push(valuesArray[i])
   }
 }
 
@@ -88,6 +89,7 @@ let counter2 = 0;
 for (let i = 0; i < valuesArray2.length; i++) {
 if (string.includes(valuesArray2[i])) {
   console.log(valuesArray2[i])
+  container.push(valuesArray2[i])
   counter2++;
 }
 }
@@ -99,11 +101,12 @@ let counter3 = 0;
 for (let i = 0; i < valuesArray3.length; i++) {
 if (string.includes(valuesArray3[i])) {
   console.log(valuesArray3[i])
+  container.push(valuesArray3[i])
   counter3++;
 }
 }
 
-
+console.log(container)
 console.log("Open:" + counter);
 console.log("CLose:" + counter2);
 console.log("Exotic:" + counter3);
