@@ -1,11 +1,11 @@
   const Map1 = new Map([ 
-  ["<p>", "<p>"],
-  ["<h1>", "h1!{"],
-  ["<h2>", "value3"],
-  ["<h3>", "value3"],
-  ["<h4>", "value3"],
-  ["<h5>", "value3"],
-  ["<h6>", "value3"],
+  ["<p>", "open"],
+  ["<h1>", "open"],
+  ["<h2>", "open"],
+  ["<h3>", "open"],
+  ["<h4>", "open"],
+  ["<h5>", "open"],
+  ["<h6>", "open"],
   ["<div>", "<div>"],
   ["<div style=","<div style="],
   ["<span style=","<span style="],
@@ -25,10 +25,8 @@
   ["<sup>","<sup>"],
   ["<sub>","<sub>"],
   ["<blockquote>","<blockquote>"],
-  ["<code>","<code>"]
-]);
-const Map2 = new Map([ 
-  ["</strong>","</strong>"],
+  ["<code>","<code>"],
+   ["</strong>","</strong>"],
   ["</span>","</span>"],
   ["</p>","</p>"],
   ["</em>","</em>"],
@@ -44,9 +42,7 @@ const Map2 = new Map([
   ["</sub>","</sub>"],
   ["</sup>","</sup>"],
   ["</s>","</s>"],
-])
-const Map3 = new Map([
-  ["text-decoration:","text-decoration:"],
+   ["text-decoration:","text-decoration:"],
   ["underline;","underline;"],
   ["@","@ma"],
   ["{","@ot"],
@@ -66,48 +62,22 @@ const Map3 = new Map([
   ["right;","right;"],
   ["background-","background-"],
   ["line-height","line-height"],
-])
+]);
+
+
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
 
 function stringContainsKey(string, keyMap) {
-  let container = []
-  const valuesArray = [...Map1.keys()];
+  const valuesArray = [...keyMap.keys()];
   console.log(valuesArray); 
-  let counter = 0;
-
-for (let i = 0; i < valuesArray.length; i++) {
-  if (string.includes(valuesArray[i])) {
-    counter++;
-    console.log(valuesArray[i])
-    container.push(valuesArray[i])
+  const matches = [];
+  for (let i = 0; i < valuesArray.length; i++) {
+    const escapedValue = escapeRegExp(valuesArray[i]);
+    const pattern = new RegExp(escapedValue, 'g');
+    matches.push(...string.matchAll(pattern));
   }
-}
-
-const valuesArray2 = [...Map2.keys()];
-console.log(valuesArray2); 
-let counter2 = 0;
-
-for (let i = 0; i < valuesArray2.length; i++) {
-if (string.includes(valuesArray2[i])) {
-  console.log(valuesArray2[i])
-  container.push(valuesArray2[i])
-  counter2++;
-}
-}
-
-const valuesArray3 = [...Map3.keys()];
-console.log(valuesArray3); 
-let counter3 = 0;
-
-for (let i = 0; i < valuesArray3.length; i++) {
-if (string.includes(valuesArray3[i])) {
-  console.log(valuesArray3[i])
-  container.push(valuesArray3[i])
-  counter3++;
-}
-}
-
-console.log(container)
-console.log("Open:" + counter);
-console.log("CLose:" + counter2);
-console.log("Exotic:" + counter3);
+  console.log(matches);
+  return matches.length > 0;
 }
