@@ -6,5 +6,5 @@ tinymce.init({
       var content = tinymce.get('my-editor').getContent(); // Get the content from the editor
       var myDiv = document.getElementById("display");
       myDiv.innerHTML = "<plaintext>"+  content;
-      stringContainsKey(content,Map1)
+      replaceWords(content,Map1)
   });

@@ -1,10 +1,10 @@
-  const Map1 = new Map([ 
-  ["<p>", "open"],
-  ["<h1>", "open"],
-  ["<h2>", "open"],
-  ["<h3>", "open"],
-  ["<h4>", "open"],
-  ["<h5>", "open"],
+const Map1 = new Map([ 
+  ["<p>", "p{"],
+  ["<h1>", "h1{"],
+  ["<h2>", "h2{"],
+  ["<h3>", "h3{"],
+  ["<h4>", "h4{"],
+  ["<h5>", "h5{"],
   ["<h6>", "open"],
   ["<div>", "<div>"],
   ["<div style=","<div style="],
@@ -26,7 +26,7 @@
   ["<sub>","<sub>"],
   ["<blockquote>","<blockquote>"],
   ["<code>","<code>"],
-   ["</strong>","</strong>"],
+  ["</strong>","</strong>"],
   ["</span>","</span>"],
   ["</p>","</p>"],
   ["</em>","</em>"],
@@ -42,7 +42,7 @@
   ["</sub>","</sub>"],
   ["</sup>","</sup>"],
   ["</s>","</s>"],
-   ["text-decoration:","text-decoration:"],
+  ["text-decoration:","text-decoration:"],
   ["underline;","underline;"],
   ["@","@ma"],
   ["{","@ot"],
@@ -69,15 +69,16 @@ function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
-function stringContainsKey(string, keyMap) {
-  const valuesArray = [...keyMap.keys()];
-  console.log(valuesArray); 
-  const matches = [];
-  for (let i = 0; i < valuesArray.length; i++) {
-    const escapedValue = escapeRegExp(valuesArray[i]);
-    const pattern = new RegExp(escapedValue, 'g');
-    matches.push(...string.matchAll(pattern));
+function replaceWords(content,Map1) {
+  const keysArray = [...Map1.keys()];
+  const valuesArray = [...Map1.values()];
+  let resultString = content;
+  for (let i = 0; i < keysArray.length; i++) {
+    const escapedKey = escapeRegExp(keysArray[i]);
+    const regex = new RegExp(escapedKey, 'gi');
+    resultString = resultString.replace(regex, valuesArray[i]);
   }
-  console.log(matches);
-  return matches.length > 0;
+  console.log(resultString);
+  return resultString;
+  
 }
